@@ -1,0 +1,10 @@
+__pycache__/
+*.ipynb_checkpoints
+.env
+*.csv
+*.json
+telegram.env
+data/raw/*
+data/labeled/*
+outputs/*
+.telegram.env
