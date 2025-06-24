@@ -7,3 +7,4 @@ telegram.env
 data/raw/*
 data/labeled/*
 outputs/*
+.telegram.env
