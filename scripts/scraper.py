@@ -59,8 +59,10 @@ async def fetch_all_messages(channel_username, max_total=2000):
                     msg.id,
                     msg.message,
                     msg.date.strftime('%Y-%m-%d %H:%M:%S'),
-                    media_path
-                ])
+                    media_path,
+                    msg.views if hasattr(msg, "views") else None
+        ])
+
 
         offset_id = messages[-1].id
         print(f"[{channel_username}] Collected: {len(all_messages)}")
@@ -84,8 +86,9 @@ async def main():
     # Save to CSV
     os.makedirs("data/raw", exist_ok=True)
     df = pd.DataFrame(all_data, columns=[
-        "Channel Title", "Channel Username", "ID", "Message", "Date", "Media Path"
+        "Channel Title", "Channel Username", "ID", "Message", "Date", "Media Path", "Views"
     ])
+
     df.to_csv("data/raw/telegram_messages.csv", index=False, encoding="utf-8")
     print(f"✅ Scraping complete. {len(df)} messages saved to data/raw/telegram_messages.csv")
 
